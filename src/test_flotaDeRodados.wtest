@@ -1,0 +1,95 @@
+import trafic.*
+import otros_rodados.*
+import dependencia.*
+
+test "dependencias y rodados"{
+
+const deportes = new Dependencia()
+const cachito = new Corsa()
+const corsaAzul = new Corsa()
+const corsaVerde = new Corsa()
+const kwidTanqueAdicional = new RenaultKwid()
+const autoEspecial = new AutosEspeciales()
+const cultura = new Dependencia()
+const primerKwidTanqueAdicional = new RenaultKwid()
+const segundoKwidTanqueAdicional = new RenaultKwid()
+const kwidSinTanqueAdicional = new RenaultKwid()
+
+deportes.setDependencia('deportes',45)
+cachito.setColor('rojo')
+corsaAzul.setColor('azul')
+corsaVerde.setColor('verde')
+kwidTanqueAdicional.tieneTanqueGas(true)
+autoEspecial.setCapacidad(5)
+autoEspecial.setVelocidad(160)
+autoEspecial.setColor('beige')
+autoEspecial.setPeso(1200)
+cultura.setDependencia('cultura',31)
+primerKwidTanqueAdicional.tieneTanqueGas(true)
+segundoKwidTanqueAdicional.tieneTanqueGas(true)
+kwidSinTanqueAdicional.tieneTanqueGas(false)
+
+//test "dependencia deportes agregar a Flota" 
+deportes.agregarAFlota(cachito)
+deportes.agregarAFlota(corsaAzul)
+deportes.agregarAFlota(corsaVerde)
+deportes.agregarAFlota(kwidTanqueAdicional)
+deportes.agregarAFlota(autoEspecial)
+assert.equals(5,deportes.tamanioFlota())
+
+//test "dependencia deportes quitar de flota"
+deportes.quitarDeFlota(cachito)
+assert.equals(4,deportes.tamanioFlota())
+deportes.agregarAFlota(cachito)
+	
+//"dependencia deportes peso total flota"	
+assert.equals(6450,deportes.pesoTotalFlota())
+	
+//"dependencia deportes esta bien equipada"	
+assert.that(deportes.estaBienEquipada())
+	
+//test "dependencia deportes capacidad total en color"	
+assert.equals(7,deportes.capacidadTotalEnColor('azul'))
+	
+//test "dependencia deportes color del rodado mas rapido"	
+assert.equals('beige',deportes.colorDelRodadoMasRapido())
+	
+//test "dependencia deportes capacidad faltantes"	
+assert.equals(25,deportes.capacidadFaltante())
+	
+//test "dependencia deportes es grande"
+assert.that(deportes.esGrande())
+
+//test "dependencia cultura agregar a flota" 
+trafic.setInteriorMotor(interiorPopular,motorBaraton)	
+cultura.agregarAFlota(cachito)
+cultura.agregarAFlota(primerKwidTanqueAdicional)
+cultura.agregarAFlota(segundoKwidTanqueAdicional)
+cultura.agregarAFlota(kwidSinTanqueAdicional)
+cultura.agregarAFlota(trafic)	
+assert.equals(5, cultura.tamanioFlota())
+	
+//test "dependencia cultura quitar de flota"	
+cultura.quitarDeFlota(trafic)	
+assert.equals(4, cultura.tamanioFlota())
+	
+//test "dependencia cultura peso total flota"	
+cultura.agregarAFlota(trafic)
+assert.equals(10700,cultura.pesoTotalFlota())
+	
+//test "dependencia cultura esta bien equipada"	
+assert.notThat(cultura.estaBienEquipada())
+	
+//test "dependencia cultura capacidad total en color"	
+assert.equals(10,cultura.capacidadTotalEnColor('azul'))
+	
+//test "dependencia cultura color del rodado mas rapido"	
+assert.equals('rojo',cultura.colorDelRodadoMasRapido())
+	
+//test "dependencia cultura capacidad faltante"	
+assert.equals(5,cultura.capacidadFaltante())
+
+//test "dependencia cultura es grande"	
+assert.notThat(cultura.esGrande())
+
+}
