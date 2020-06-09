@@ -1,11 +1,13 @@
 import trafic.*
 import otros_rodados.*
+import pedidos.*
 
 class Dependencia {
 	
 	var dependencia
 	var cantEmplDependencia	
 	const flota = []
+	const pedidos = []
 	
 	method setDependencia (newDependencia,cantEmpleados){
 		dependencia = newDependencia
@@ -57,4 +59,10 @@ class Dependencia {
 	method esGrande(){
 		return(self.tamanioFlota() >= 5 && cantEmplDependencia >= 40)
 	}
+	
+	method addPedido(newPedido){ pedidos.add(newPedido) }
+	method totalPasajerosEnPedidos() { return pedidos.sum( { cosa => cosa.cantidadPas() } )}
+	method todosIncompatibles(color){return (pedidos.all( {cosa => cosa.color() == color }) )}
+	
+	method relajarTodoPedido(){ pedidos.forEach( { cosa => cosa.relajar() })}
 }

@@ -1,0 +1,17 @@
+import otros_rodados.*
+import pedidos.*
+
+test "pedidos" {
+	
+	const newPedido = new Pedidos()
+	const cachito = new Corsa()
+	cachito.setColor('rojo')
+	newPedido.setDistancia(960)
+	newPedido.setTiempoMaximo(8)
+	newPedido.cantidadPasajeros(4)
+	newPedido.setColoresIncompatibles('azul')
+	newPedido.setColoresIncompatibles('negro')
+	
+	assert.that(newPedido.autoSatisfacePedido(cachito))
+
+}

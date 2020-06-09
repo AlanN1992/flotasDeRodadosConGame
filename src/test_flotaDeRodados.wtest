@@ -1,6 +1,7 @@
 import trafic.*
 import otros_rodados.*
 import dependencia.*
+import pedidos.*
 
 test "dependencias y rodados"{
 
@@ -91,5 +92,24 @@ assert.equals(5,cultura.capacidadFaltante())
 
 //test "dependencia cultura es grande"	
 assert.notThat(cultura.esGrande())
+
+const pedido1 = new Pedidos()
+const pedido2 = new Pedidos()
+
+pedido1.cantidadPasajeros(4)
+pedido2.cantidadPasajeros(3)
+pedido1.setColoresIncompatibles('rojo')
+pedido2.setColoresIncompatibles('verde')
+pedido1.setTiempoMaximo(9)
+pedido2.setTiempoMaximo(8)
+deportes.addPedido(pedido1)
+deportes.addPedido(pedido2)
+deportes.relajarTodoPedido() 
+
+assert.equals(7,deportes.totalPasajerosEnPedidos())
+assert.notThat(deportes.todosIncompatibles('azul'))
+assert.equals(10,pedido1.tiempoMax())
+assert.equals(9,pedido2.tiempoMax())
+
 
 }
