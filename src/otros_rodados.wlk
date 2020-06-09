@@ -1,6 +1,46 @@
+import wollok.game.*
+
+object rojo{ method image(){return "autitorojo.png"}}
+object verde{ method image(){return "green_car.png"}}
+object azul{ method image(){return "blue_car.png"}}
+
 class Corsa {
 	
+	var property imagen = "autitorojo.png"
+	var property position
 	var color
+	const listaPosiciones = []
+	
+	method moveteDerecha(){
+		self.position(self.position().right(1))
+		listaPosiciones.add(position)
+	}
+	
+	method moveteIzquierda(){
+		self.position(self.position().left(1))
+		listaPosiciones.add(position)
+	}
+	
+	method moveteArriba(){
+		self.position(self.position().up(1))
+		listaPosiciones.add(position)
+	}
+	
+	method moveteAbajo(){
+		self.position(self.position().down(1))
+		listaPosiciones.add(position)
+	}
+	
+	method moveteA(unaPosicion){
+		self.position(unaPosicion)
+		listaPosiciones.add(position)
+	}
+	
+	method showListaPosiciones(){return listaPosiciones}
+	
+	method pasoPor(posicion){ return listaPosiciones.contains(posicion)}
+	method pasoPorFila(numero) { return listaPosiciones.contains(numero)}
+	method recorrioFilas(lista_de_numeros) { return listaPosiciones.contains(lista_de_numeros)} 
 	
 	method capacidad(){
 		return (4)

@@ -1,7 +1,27 @@
 import wollok.game.*
+import otros_rodados.*
 
 program corsasEnElGame {
 	// hacer las inicializaciones necesarias 
+	const cachito = new Corsa()
+	
+	game.title("Corsa Multicolor")
+	game.ground("descarga.jpg")
+	game.height(10)
+	game.width(10)
+	game.addVisual(cachito)
+	cachito.position(game.at(0,0))
+	
+	keyboard.r().onPressDo(cachito.imagen = rojo.image())
+	keyboard.v().onPressDo(cachito.imagen = verde.image())
+	keyboard.a().onPressDo(cachito.imagen = azul.image())
+	
+	
+	keyboard.up().onPressDo ({cachito.moveteArriba()})	
+	keyboard.down().onPressDo ({cachito.moveteAbajo()})	
+	keyboard.left().onPressDo ({cachito.moveteIzquierda()})	
+	keyboard.right().onPressDo ({cachito.moveteDerecha()})
+	
 	
 	game.start()
 }
